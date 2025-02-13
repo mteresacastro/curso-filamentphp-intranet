@@ -29,7 +29,9 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Employees';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = "Employees Management";
+
+    protected static ?string $navigationIcon = 'heroicon-s-users';
 
     public static function form(Form $form): Form
     {
@@ -47,6 +49,8 @@ class UserResource extends Resource
                         ->required(),
                     TextInput::make('password')
                         ->password()
+                        //se oculta en la edicion
+                        ->hiddenOn('edit')
                         ->required(),
                 ]),
                 //Si importo cada componente ya no hace falta que ponga la ruta 
@@ -102,9 +106,18 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
+                Tables\Columns\TextColumn::make('postal_code')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
