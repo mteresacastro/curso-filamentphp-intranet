@@ -27,10 +27,19 @@ class PersonalPanelProvider extends PanelProvider
             ->path('personal')
             //con esto le decimos que desdde este panel se puede hacer login
             ->login()
+            //añadir perfil
+            ->profile()
             ->default()//para que sea el panel de entrada por defecto
             ->colors([
-                'primary' => Color::Blue,
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Purple,
+                //'primary' => Color::hex('#C080FF'), para elegir colores personalizados
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
+            
             ->discoverResources(in: app_path('Filament/Personal/Resources'), for: 'App\\Filament\\Personal\\Resources')
             ->discoverPages(in: app_path('Filament/Personal/Pages'), for: 'App\\Filament\\Personal\\Pages')
             ->pages([

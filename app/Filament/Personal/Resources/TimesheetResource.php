@@ -23,7 +23,7 @@ class TimesheetResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-    return parent::getEloquentQuery()->where('user_id', FacadesAuth::user()->id);
+    return parent::getEloquentQuery()->where('user_id', FacadesAuth::user()->id)->orderBy('id','desc');
     }
 
     protected function getRedirectUrl(): string
